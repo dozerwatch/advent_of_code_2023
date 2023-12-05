@@ -115,7 +115,6 @@ with open("./day1/day1_part2_inputs.txt") as f:
             digits = 0
 
         sum += int(digits)
-        print(digits)
         digits = ''
 
 print(sum)
