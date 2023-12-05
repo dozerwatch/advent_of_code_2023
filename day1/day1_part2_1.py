@@ -38,28 +38,79 @@ def find_num(left_or_right, line):
                 pass
         return (-1,-1)
     
-def find_letter(left_or_right, line):
+def find_let(left_or_right, line):
     '''
     left_or_right:  0 or 1, meaning we are looking
                     for the leftmost or rightmost num respectively
     
     line:           the line we are working on
 
-    return:         the tuple (index in line, left or right most letter) or (-1,-1) if none 
+    return:         the tuple (index in line, left or right most letter) 
+                    or (1000000, -1) or (-1,-1) if none 
                     the letter is converted to int
     '''
     
-    pos, let = 0, 0
+    let = -1
 
-    
+    # Find rightmost letter
+    if (left_or_right):
+        pos = -1
+        # Find the letter with the greatest index
+        for letter in valid_letter_digits:
+            p = line.find(letter)
+            if (p == -1):
+                continue
+            elif (p >= pos):
+                pos = p
+                let = valid_letter_digits.index(letter) + 1
+        return (pos, let)
 
+    # Find leftmost letter
+    else:
+        pos = 1000000
+        # Find the letter with the smallest index
+        for letter in valid_letter_digits:
+            p = line.find(letter)
+            if (p == -1):
+                continue
+            elif (p <= pos):
+                pos = p
+                let = valid_letter_digits.index(letter) + 1
+        return (pos, let)
 
-
-
-
-
-with open("./day1/test.txt") as f:
+with open("./day1/day1_part2_inputs.txt") as f:
     lines = f.read().splitlines()
 
+    lp, ln = 0, 0       # Leftmost position and num
+    rp, rn = 0, 0       # Rightmost position and num
+
     for line in lines:
-        print(find_num(1, line))
+        lnp, lnn = find_num(0, line)       # Leftmost num position and num
+        rnp, rnn = find_num(1, line)       # Rightmost num position and num
+        llp, lln = find_let(0, line)       # Leftmost let position and let
+        rlp, rln = find_let(1, line)       # Rightmost let position and let
+
+        # Leftmost invalid entries (-1, -1) or (1000000, -1)
+        if (lnn == -1):             # num is invalid
+            digits += str(lln)
+        elif (rln == -1):           # let is invalid
+            digits += str(lnn)
+        elif (lnp <= llp):          # Get leftmost position and digit
+            digits += str(lnn)      # num
+        else:                       
+            digits += str(lln)      # let
+
+        # Rightmost invalid entries (-1, -1)
+        if (rnn == -1):             # num is invalid
+            digits += str(rln)
+        elif (rln == -1):           # let is invalid
+            digits += str(rnn)
+        elif (rnp >= rlp):          # Get rightmost position and digit
+            digits += str(rnn)      # num
+        else:
+            digits += str(rln)      # let
+
+        sum += int(digits)
+        digits = ''
+
+print(sum)
