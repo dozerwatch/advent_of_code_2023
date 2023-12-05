@@ -1,3 +1,3 @@
-valid_letter_digits = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+s = 'kpzfgpxdonesix2fourninefourfour'
 
-print(valid_letter_digits.index('nine') + 1)
+print(s.rfind('four'))

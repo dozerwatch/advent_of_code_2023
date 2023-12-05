@@ -57,7 +57,7 @@ def find_let(left_or_right, line):
         pos = -1
         # Find the letter with the greatest index
         for letter in valid_letter_digits:
-            p = line.find(letter)
+            p = line.rfind(letter)
             if (p == -1):
                 continue
             elif (p >= pos):
@@ -93,7 +93,7 @@ with open("./day1/day1_part2_inputs.txt") as f:
         # Leftmost invalid entries (-1, -1) or (1000000, -1)
         if (lnn == -1):             # num is invalid
             digits += str(lln)
-        elif (rln == -1):           # let is invalid
+        elif (lln == -1):           # let is invalid
             digits += str(lnn)
         elif (lnp <= llp):          # Get leftmost position and digit
             digits += str(lnn)      # num
@@ -110,7 +110,12 @@ with open("./day1/day1_part2_inputs.txt") as f:
         else:
             digits += str(rln)      # let
 
+        # Both num and let are invalid
+        if (lnn == -1 and lln == -1):
+            digits = 0
+
         sum += int(digits)
+        print(digits)
         digits = ''
 
 print(sum)
