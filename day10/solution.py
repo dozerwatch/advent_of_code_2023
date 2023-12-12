@@ -1,0 +1,1 @@
+lines = open('day10/test.txt').read().splitlines()
