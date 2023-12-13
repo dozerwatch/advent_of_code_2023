@@ -159,9 +159,7 @@ while(True):
     if all([True if x in valid_pipes else False for x in new_pipes]):
         break
 
-print("Part 1: ", int(len(valid_pipes)/2))
-
-# -------- Part 2 -------- #
+print(int(len(valid_pipes)/2))
 
 
 
