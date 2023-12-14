@@ -1,6 +1,6 @@
-PIPES = '|-LJ7F'                                                    # Pipes
+PIPES = '|-LJ7FS'                                                    # Pipes
 
-map = open('day10/test.txt').read().splitlines()                    # Puzzle input
+map = open('day10/part2/test.txt').read().splitlines()                    # Puzzle input
 pipe_loc = {(r, c):map[r][c] for r in range(len(map)) 
                 for c in range(len(map)) if map[r][c] in PIPES}     # Location of all pipes
 
