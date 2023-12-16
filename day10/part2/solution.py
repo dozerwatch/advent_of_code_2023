@@ -1,4 +1,5 @@
-# this queue is synchronized, which is pretty pointless...
+# I couldnt get this one. Had to use another person's solution.
+
 from queue import Queue
 
 with open("day10/part2/data.txt", "r") as f:
